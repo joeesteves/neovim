@@ -5,7 +5,6 @@ local o = vim.o
 -- vim.api.nvim_command('filetype plugin indent on')
 
 o.termguicolors = true
--- o.background = 'dark'
 
 -- Do not save when switching buffers
 -- o.hidden = true
@@ -19,7 +18,7 @@ o.scrolloff = 8
 
 -- Better editor UI
 o.number = true
-o.numberwidth = 5
+o.numberwidth = 4
 o.relativenumber = true
 o.signcolumn = 'auto:2'
 o.cursorline = true
@@ -28,16 +27,21 @@ o.cursorline = true
 o.expandtab = true
 -- o.smarttab = true
 o.cindent = true
--- o.autoindent = true
+o.autoindent = true
 o.wrap = true
 o.textwidth = 300
 o.tabstop = 2
 o.shiftwidth = 0
 o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.list = true
-o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
+o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  ┊'
 -- o.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
 -- o.formatoptions = 'qrn1'
+
+-- Tab config
+-- Show the name when we have only one tab open
+o.showtabline = 2
+o.guitablabel = '%t'
 
 -- Makes neovim and host OS clipboard play nicely with each other
 o.clipboard = 'unnamedplus'
@@ -76,10 +80,10 @@ vim.opt.diffopt:append('linematch:60')
 -- o.lazyredraw = true
 
 -- Better folds (don't fold by default)
--- o.foldmethod = 'indent'
--- o.foldlevelstart = 99
--- o.foldnestmax = 3
--- o.foldminlines = 1
+o.foldmethod = 'indent'
+o.foldlevelstart = 99
+o.foldnestmax = 3
+o.foldminlines = 1
 
 -- Map <leader> to space
 g.mapleader = ' '

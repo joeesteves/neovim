@@ -19,7 +19,6 @@ return require('packer').startup(function(use)
   ----------------------
   -- Theme plugins --
   ----------------------
-
   use 'EdenEast/nightfox.nvim'
   vim.cmd[[colorscheme nightfox]]
 
@@ -55,6 +54,18 @@ return require('packer').startup(function(use)
       }
   })
 
+  -- Add info to status line
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    config = function()
+        require('lualine').setup()
+    end
+  }
+
+  -----------------------
+  -- Utilities plugins --
+  -----------------------
   use {
       'numToStr/Comment.nvim',
       config = function()
@@ -62,28 +73,66 @@ return require('packer').startup(function(use)
       end
   }
 
+  use({
+      'tpope/vim-surround',
+      event = 'BufRead',
+      requires = {
+          {
+              'tpope/vim-repeat',
+              event = 'BufRead',
+          },
+      },
+  })
+  
+  -----------------------------------
+  -- Treesitter: Better Highlights --
+  -----------------------------------
+  --
+  -- use {
+  --       'nvim-treesitter/nvim-treesitter',
+  --       event = 'CursorHold',
+  --       run = ':TSUpdate',
+  --       config = function()
+  --         require('plugins.treesitter')
+  --       end
+  -- }
 
-  use {
-    "tpope/vim-rails",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      -- disable autocmd set filetype=eruby.yaml
-      vim.api.nvim_create_autocmd(
-        { 'BufNewFile', 'BufReadPost' },
-        {
-          pattern = { '*.yml' },
-          callback = function()
-            vim.bo.filetype = 'yaml'
-          end
+  ----------------------
+  -- Language plugins --
+  ----------------------
+  
+  -- use {
+  --   "tpope/vim-rails",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   config = function()
+  --     -- disable autocmd set filetype=eruby.yaml
+  --     vim.api.nvim_create_autocmd(
+  --       { 'BufNewFile', 'BufReadPost' },
+  --       {
+  --         pattern = { '*.yml' },
+  --         callback = function()
+  --           vim.bo.filetype = 'yaml'
+  --         end
+  --
+  --       }
+  --     )
+  --   end
+  -- }
 
-        }
-      )
-    end
-  }
-
+  use("slim-template/vim-slim")
 
   use({
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+  ----------------------
+  -- Git plugins --
+  ----------------------
+  --use tpope/vim-fugitive
+  use { 
+    'tpope/vim-fugitive', 
+     config = function()
+        vim.api.nvim_create_user_command('G', 'Gtabedit :', {})
+     end
+  }
 end)

@@ -80,6 +80,12 @@ _G.packer_plugins = {
     path = "/home/joe/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  ["lualine.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0" },
+    loaded = true,
+    path = "/home/joe/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["markdown-preview.nvim"] = {
     loaded = true,
     path = "/home/joe/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
@@ -132,28 +138,52 @@ _G.packer_plugins = {
     path = "/home/joe/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-rails"] = {
-    config = { "\27LJ\2\n0\0\0\2\0\4\0\0056\0\0\0009\0\1\0'\1\3\0=\1\2\0K\0\1\0\tyaml\rfiletype\abo\bvim‰\1\1\0\5\0\t\0\v6\0\0\0009\0\1\0009\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0033\4\a\0=\4\b\3B\0\3\1K\0\1\0\rcallback\0\fpattern\1\0\0\1\2\0\0\n*.yml\1\3\0\0\15BufNewFile\16BufReadPost\24nvim_create_autocmd\bapi\bvim\0" },
+  ["vim-fugitive"] = {
+    config = { "\27LJ\2\nU\0\0\5\0\5\0\b6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0004\4\0\0B\0\4\1K\0\1\0\15Gtabedit :\6G\29nvim_create_user_command\bapi\bvim\0" },
+    loaded = true,
+    path = "/home/joe/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-repeat"] = {
     loaded = false,
-    needs_bufread = true,
+    needs_bufread = false,
     only_cond = false,
-    path = "/home/joe/.local/share/nvim/site/pack/packer/opt/vim-rails",
-    url = "https://github.com/tpope/vim-rails"
+    path = "/home/joe/.local/share/nvim/site/pack/packer/opt/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-slim"] = {
+    loaded = true,
+    path = "/home/joe/.local/share/nvim/site/pack/packer/start/vim-slim",
+    url = "https://github.com/slim-template/vim-slim"
+  },
+  ["vim-surround"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/joe/.local/share/nvim/site/pack/packer/opt/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: vim-fugitive
+time([[Config for vim-fugitive]], true)
+try_loadstring("\27LJ\2\nU\0\0\5\0\5\0\b6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0004\4\0\0B\0\4\1K\0\1\0\15Gtabedit :\6G\29nvim_create_user_command\bapi\bvim\0", "config", "vim-fugitive")
+time([[Config for vim-fugitive]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au CursorHold * ++once lua require("packer.load")({'telescope.nvim', 'nvim-tree.lua'}, { event = "CursorHold *" }, _G.packer_plugins)]]
-vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'vim-rails'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
-vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'vim-rails'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'vim-repeat', 'vim-surround'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au CursorHold * ++once lua require("packer.load")({'nvim-tree.lua', 'telescope.nvim'}, { event = "CursorHold *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 
