@@ -26,15 +26,15 @@ return require('packer').startup(function(use)
   -- Navigation and Fuzzy Search --
   ---------------------------------
    use({
-          'nvim-tree/nvim-tree.lua',
-          event = 'CursorHold',
-          requires = {
-            'nvim-tree/nvim-web-devicons', -- optional
-          },
-          config = function()
-              require('plugins.nvim-tree')
-          end,
-      })
+     'nvim-tree/nvim-tree.lua',
+     event = 'CursorHold',
+     requires = {
+       'nvim-tree/nvim-web-devicons', -- optional
+     },
+     config = function()
+        require('plugins.nvim-tree')
+     end,
+  })
 
   use({
       {
@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
   -----------------------
   -- Utilities plugins --
   -----------------------
+  use 'AndrewRadev/switch.vim'
   use {
       'numToStr/Comment.nvim',
       config = function()
@@ -88,14 +89,16 @@ return require('packer').startup(function(use)
   -- Treesitter: Better Highlights --
   -----------------------------------
   --
-  -- use {
-  --       'nvim-treesitter/nvim-treesitter',
-  --       event = 'CursorHold',
-  --       run = ':TSUpdate',
-  --       config = function()
-  --         require('plugins.treesitter')
-  --       end
-  -- }
+  use {{
+    'nvim-treesitter/nvim-treesitter',
+    event = 'CursorHold',
+    run = ':TSUpdate',
+    config = function()
+      require('plugins.treesitter')
+    end
+  },
+    { 'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter' }
+  }
 
   ----------------------
   -- Language plugins --
@@ -135,4 +138,35 @@ return require('packer').startup(function(use)
         vim.api.nvim_create_user_command('G', 'Gtabedit :', {})
      end
   }
+        -----------------------------------
+        -- LSP, Completions and Snippets --
+        -----------------------------------
+
+        use({
+            {
+                'hrsh7th/nvim-cmp',
+                event = 'InsertEnter',
+                config = function()
+                    require('plugins.lsp.nvim-cmp')
+                end,
+                requires = {
+                    {
+                        'L3MON4D3/LuaSnip',
+                        event = 'InsertEnter',
+                        config = function()
+                            require('plugins.lsp.luasnip')
+                        end,
+                        requires = {
+                            {
+                                'rafamadriz/friendly-snippets',
+                                event = 'CursorHold',
+                            },
+                        },
+                    },
+                },
+            },
+            { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+            { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+            { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+        })
 end)
