@@ -20,7 +20,7 @@ o.scrolloff = 8
 o.number = true
 o.numberwidth = 4
 o.relativenumber = true
-o.signcolumn = 'auto:2'
+o.signcolumn = "auto:2"
 o.cursorline = true
 
 -- Better editing experience
@@ -34,17 +34,17 @@ o.tabstop = 2
 o.shiftwidth = 0
 o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.list = true
-o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  ┊'
+o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  ┊"
 -- o.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
 -- o.formatoptions = 'qrn1'
 
 -- Tab config
 -- Show the name when we have only one tab open
 o.showtabline = 2
-o.guitablabel = '%t'
+o.guitablabel = "%t"
 
 -- Makes neovim and host OS clipboard play nicely with each other
-o.clipboard = 'unnamedplus'
+o.clipboard = "unnamedplus"
 
 -- Case insensitive searching UNLESS /C or capital in search
 o.ignorecase = true
@@ -67,24 +67,24 @@ o.splitright = true
 o.splitbelow = true
 
 -- Preserve view while jumping
-o.jumpoptions = 'view'
+o.jumpoptions = "view"
 
 -- Stable buffer content on window open/close events.
-o.splitkeep = 'screen'
+o.splitkeep = "screen"
 
 -- Improve diff
-vim.opt.diffopt:append('linematch:60')
+vim.opt.diffopt:append("linematch:60")
 
 -- WARN: this won't update the search count after pressing `n` or `N`
 -- When running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen
 -- o.lazyredraw = true
 
 -- Better folds (don't fold by default)
-o.foldmethod = 'indent'
+o.foldmethod = "indent"
 o.foldlevelstart = 99
 o.foldnestmax = 3
 o.foldminlines = 1
 
 -- Map <leader> to space
-g.mapleader = ' '
-g.maplocalleader = ' '
+g.mapleader = " "
+g.maplocalleader = " "
