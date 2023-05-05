@@ -40,6 +40,13 @@ vim.diagnostic.config({
 	},
 })
 
+-- Solargraph
+lsp.solargraph.setup({
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- Lua
 lsp.lua_ls.setup({
 	flags = flags,
