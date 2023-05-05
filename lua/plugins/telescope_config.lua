@@ -60,3 +60,6 @@ vim.keymap.set("n", "'r", Telescope.live_grep)
 
 -- Fuzzy find changed files in git
 vim.keymap.set("n", "'c", Telescope.git_status)
+
+-- Search for string
+vim.keymap.set("n", "'s", Telescope.lsp_document_symbols)

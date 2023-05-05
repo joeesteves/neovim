@@ -38,7 +38,7 @@ o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  
 -- o.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
 -- o.formatoptions = 'qrn1'
 
--- Tab config
+-- Buffer label (AKA Tabs) config
 -- Show the name when we have only one tab open
 o.showtabline = 2
 o.guitablabel = "%t"

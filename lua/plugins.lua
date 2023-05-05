@@ -22,6 +22,25 @@ return require("packer").startup(function(use)
 	use("EdenEast/nightfox.nvim")
 	vim.cmd([[colorscheme nightfox]])
 
+	-------------------------
+	-- Shade --
+	-- dim unactive buffers
+	-------------------------
+	use({
+		"jghauser/shade.nvim",
+		config = function()
+			require("shade").setup({
+				overlay_opacity = 50,
+				opacity_step = 1,
+				keys = {
+					brightness_up = "<C-Up>",
+					brightness_down = "<C-Down>",
+					toggle = "<Leader>s",
+				},
+			})
+		end,
+	})
+
 	---------------------------------
 	-- Navigation and Fuzzy Search --
 	---------------------------------
@@ -104,24 +123,20 @@ return require("packer").startup(function(use)
 	----------------------
 	-- Language plugins --
 	----------------------
-
-	-- use {
-	--   "tpope/vim-rails",
-	--   event = { "BufReadPre", "BufNewFile" },
-	--   config = function()
-	--     -- disable autocmd set filetype=eruby.yaml
-	--     vim.api.nvim_create_autocmd(
-	--       { 'BufNewFile', 'BufReadPost' },
-	--       {
-	--         pattern = { '*.yml' },
-	--         callback = function()
-	--           vim.bo.filetype = 'yaml'
-	--         end
-	--
-	--       }
-	--     )
-	--   end
-	-- }
+	use("kchmck/vim-coffee-script")
+	-- use({
+	-- 	"tpope/vim-rails",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	config = function()
+	-- 		-- disable autocmd set filetype=eruby.yaml
+	-- 		vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+	-- 			pattern = { "*.yml" },
+	-- 			callback = function()
+	-- 				vim.bo.filetype = "yaml"
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- })
 
 	use("slim-template/vim-slim")
 
@@ -141,6 +156,8 @@ return require("packer").startup(function(use)
 			vim.api.nvim_create_user_command("G", "Gtabedit :", {})
 		end,
 	})
+
+	use("knsh14/vim-github-link")
 	-----------------------------------
 	-- LSP, Completions and Snippets --
 	-----------------------------------
