@@ -1,5 +1,6 @@
 vim.loader.enable()
 
-require('settings')
-require('plugins')
-require('keybindings')
+require("autocmd")
+require("keybindings")
+require("plugins")
+require("settings")

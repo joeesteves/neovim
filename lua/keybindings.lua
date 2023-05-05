@@ -8,7 +8,7 @@ map("n", "<C-t>", "<CMD>tabnew<CR>")
 -- FORMAT
 
 map("n", "<leader>f", "<CMD>lua vim.lsp.buf.format()<CR>")
-
+--
 -- Copy path of current buffer to clipboard
 map("n", "<C-K><C-F>", '<CMD>let @+ = expand("%")<CR>')
 
