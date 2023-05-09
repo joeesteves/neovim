@@ -73,6 +73,19 @@ return require("packer").startup(function(use)
 		},
 	})
 
+	use({
+		"alvarosevilla95/luatab.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("luatab").setup({
+				-- remove anoying buffer numbers (2) file_name.ex
+				windowCount = function()
+					return ""
+				end,
+			})
+		end,
+	})
+	--
 	-- Add info to status line
 	use({
 		"nvim-lualine/lualine.nvim",

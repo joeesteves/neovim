@@ -41,7 +41,7 @@ o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  
 -- Buffer label (AKA Tabs) config
 -- Show the name when we have only one tab open
 o.showtabline = 2
-o.guitablabel = "%t"
+-- o.guitablabel = "%t"
 
 -- Makes neovim and host OS clipboard play nicely with each other
 o.clipboard = "unnamedplus"
