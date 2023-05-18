@@ -58,9 +58,13 @@ return require("packer").startup(function(use)
 	use({
 		{
 			"nvim-telescope/telescope.nvim",
+			requires = {
+				{ "nvim-telescope/telescope-live-grep-args.nvim" },
+			},
 			event = "CursorHold",
 			config = function()
 				require("plugins.telescope_config")
+				require("telescope").load_extension("live_grep_args")
 			end,
 		},
 		{
@@ -71,6 +75,18 @@ return require("packer").startup(function(use)
 				require("telescope").load_extension("fzf")
 			end,
 		},
+	})
+	-- Lua
+	use({
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
 	})
 
 	use({
@@ -85,7 +101,7 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
-	--
+
 	-- Add info to status line
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -98,7 +114,16 @@ return require("packer").startup(function(use)
 	-----------------------
 	-- Utilities plugins --
 	-----------------------
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	})
+
 	use("AndrewRadev/switch.vim")
+
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
@@ -117,6 +142,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
+	use("romainl/vim-qf")
 	-----------------------------------
 	-- Treesitter: Better Highlights --
 	-----------------------------------

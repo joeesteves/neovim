@@ -19,7 +19,7 @@ o.scrolloff = 8
 -- Better editor UI
 o.number = true
 o.numberwidth = 4
-o.relativenumber = true
+-- o.relativenumber = true
 o.signcolumn = "auto:2"
 o.cursorline = true
 

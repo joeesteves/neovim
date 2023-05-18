@@ -43,14 +43,30 @@ cmp.setup({
 		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
 		["<C-j>"] = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
 		--default ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-l>"] = cmp.mapping(function(_fallback)
+			vim.api.nvim_feedkeys(
+				vim.fn["copilot#Accept"](vim.api.nvim_replace_termcodes("<Tab>", true, true, true)),
+				"n",
+				true
+			)
+		end),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", max_item_count = 10 },
 		{ name = "luasnip", max_item_count = 10 },
 		{ name = "path", max_item_count = 10 },
-		{ name = "buffer", max_item_count = 10 },
+		{
+			name = "buffer",
+			option = {
+				get_bufnrs = function()
+					return vim.api.nvim_list_bufs()
+				end,
+			},
+			max_item_count = 10,
+		},
 	}),
 	snippet = {
 		expand = function(args)

@@ -40,6 +40,22 @@ vim.diagnostic.config({
 	},
 })
 
+-- Elixir
+require("lspconfig").elixirls.setup({
+	-- Unix
+	cmd = { "/home/joe/.elixir-ls/release/language_server.sh" },
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- Haskell
+lsp.hls.setup({
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+--
 -- Solargraph
 lsp.solargraph.setup({
 	flags = flags,

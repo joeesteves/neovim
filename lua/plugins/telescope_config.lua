@@ -16,9 +16,10 @@ require("telescope").setup({
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
 				["<TAB>"] = actions.toggle_selection + actions.move_selection_next,
-				["<C-s>"] = actions.send_selected_to_qflist,
-				["<C-q>"] = actions.send_to_qflist,
+				["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<C-h>"] = lactions.toggle_preview,
+				["<C-t>"] = actions.select_tab,
 			},
 		},
 	},
@@ -57,6 +58,7 @@ vim.keymap.set("n", "'b", Telescope.buffers)
 
 -- Search for string
 vim.keymap.set("n", "'r", Telescope.live_grep)
+vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 -- Fuzzy find changed files in git
 vim.keymap.set("n", "'c", Telescope.git_status)
