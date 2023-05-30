@@ -196,7 +196,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("knsh14/vim-github-link")
+	use("ponyesteves/vim-github-link")
 	-----------------------------------
 	-- LSP, Completions and Snippets --
 	-----------------------------------

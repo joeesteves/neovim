@@ -18,8 +18,8 @@ nls.setup({
 		-- 1. both needs to be enabled to so prettier can apply eslint fixes
 		-- 2. prettierd should come first to prevent occassional race condition
 		fmt.prettierd,
-		fmt.rubyfmt,
-		fmt.eslint_d,
+		-- fmt.rubyfmt,
+		fmt.rubocop,
 		-- fmt.prettier.with({
 		--     extra_args = {
 		--         '--tab-width=4',
@@ -32,6 +32,7 @@ nls.setup({
 		fmt.stylua,
 		fmt.gofmt,
 		fmt.zigfmt,
+		fmt.eslint_d,
 		fmt.shfmt.with({
 			extra_args = { "-i", 4, "-ci", "-sr" },
 		}),

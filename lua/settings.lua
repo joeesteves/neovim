@@ -86,5 +86,6 @@ o.foldnestmax = 3
 o.foldminlines = 1
 
 -- Map <leader> to space
+-- FIX: not working leaders is still \
 g.mapleader = " "
 g.maplocalleader = " "
