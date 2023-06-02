@@ -17,6 +17,9 @@ nls.setup({
 		-- NOTE:
 		-- 1. both needs to be enabled to so prettier can apply eslint fixes
 		-- 2. prettierd should come first to prevent occassional race condition
+		fmt.deno_fmt.with({
+			filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+		}),
 		fmt.prettierd,
 		-- fmt.rubyfmt,
 		fmt.rubocop,

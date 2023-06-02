@@ -5,8 +5,10 @@ end
 map("n", "<C-x>", "<CMD>bd<CR>")
 map("n", "<C-t>", "<CMD>tabnew<CR>")
 
--- FORMAT
+--copy buffer to clipboard
+map("n", "<C-A>", "<CMD>%y+<CR>")
 
+-- FORMAT
 map("n", "<leader>f", "<CMD>lua vim.lsp.buf.format()<CR>")
 --
 -- Copy path of current buffer to clipboard
