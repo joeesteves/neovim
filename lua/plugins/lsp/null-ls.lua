@@ -23,6 +23,7 @@ nls.setup({
 		fmt.prettierd,
 		-- fmt.rubyfmt,
 		fmt.rubocop,
+		fmt.mix,
 		-- fmt.prettier.with({
 		--     extra_args = {
 		--         '--tab-width=4',
