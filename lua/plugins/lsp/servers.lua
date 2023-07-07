@@ -40,13 +40,38 @@ vim.diagnostic.config({
 	},
 })
 
+-- lsp.sqlls.setup({
+-- 	cmd = { "sql-language-server", "up", "--method", "stdio" },
+-- 	filetypes = { "sql" },
+-- 	flags = flags,
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- })
+
 -- Elixir
-require("lspconfig").elixirls.setup({
+lsp.elixirls.setup({
 	-- Unix
 	cmd = { "/home/joe/.elixir-ls/release/language_server.sh" },
 	flags = flags,
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+-- TypeScript
+lsp.tsserver.setup({
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- Rust
+lsp.rust_analyzer.setup({
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		["rust-analyzer"] = {},
+	},
 })
 
 -- Haskell

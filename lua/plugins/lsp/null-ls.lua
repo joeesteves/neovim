@@ -23,6 +23,7 @@ nls.setup({
 		fmt.prettierd,
 		-- fmt.rubyfmt,
 		fmt.rubocop,
+		fmt.sqlformat,
 		fmt.mix,
 		-- fmt.prettier.with({
 		--     extra_args = {
@@ -44,7 +45,7 @@ nls.setup({
 		-- DIAGNOSTICS --
 		-----------------
 		dgn.eslint_d,
-		dgn.shellcheck,
+		-- dgn.shellcheck,
 		dgn.luacheck.with({
 			extra_args = { "--globals", "vim", "--std", "luajit" },
 		}),

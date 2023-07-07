@@ -10,9 +10,16 @@ local fmt_group = vim.api.nvim_create_augroup("FORMATTING", { clear = true })
 function U.fmt_on_save(client, buf)
 	local ft = vim.bo.filetype
 	local excluded_for_fmt_on_save = ft ~= "ruby"
+	local event
+	-- NOTE: elixir mix must be run after saving
+	if ft ~= "elixir" then
+		event = "BufWritePost"
+	else
+		event = "BufWritePre"
+	end
 
 	if excluded_for_fmt_on_save and client.supports_method("textDocument/formatting") then
-		vim.api.nvim_create_autocmd("BufWritePre", {
+		vim.api.nvim_create_autocmd(event, {
 			group = fmt_group,
 			buffer = buf,
 			callback = function()
