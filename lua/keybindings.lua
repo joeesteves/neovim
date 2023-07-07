@@ -5,6 +5,9 @@ end
 map("n", "<C-x>", "<CMD>bd<CR>")
 map("n", "<C-t>", "<CMD>tabnew<CR>")
 
+--Git conflicts
+map("n", "<C-c>", "<CMD>/<<<<<<<\\|=======\\|>>>>>>>/ <CR>")
+
 --copy buffer to clipboard
 map("n", "<C-A>", "<CMD>%y+<CR>")
 
