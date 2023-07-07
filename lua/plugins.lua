@@ -102,12 +102,36 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	local function branch_name()
+		local branch = vim.fn.system("git branch --show-current | cut -c1-7 | tr -d '\n' ")
+
+		if branch ~= "" then
+			return branch
+		else
+			return ""
+		end
+	end
+
+	vim.g.git_branch = branch_name()
+	--
 	-- Add info to status line
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
 		config = function()
-			require("lualine").setup()
+			require("lualine").setup({
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = {
+						"vim.g.git_branch",
+						{ "diagnostics", symbols = { error = "E", warn = "W", info = "I", hint = "H" } },
+					},
+					lualine_c = { "filename" },
+					lualine_x = { "encoding", "filetype" },
+					lualine_y = { "progress" },
+					lualine_z = {},
+				},
+			})
 		end,
 	})
 
@@ -146,7 +170,7 @@ return require("packer").startup(function(use)
 	-----------------------------------
 	-- Treesitter: Better Highlights --
 	-----------------------------------
-	--
+	use("pbrisbin/vim-syntax-shakespeare")
 	use({
 		{
 			"nvim-treesitter/nvim-treesitter",
@@ -163,20 +187,7 @@ return require("packer").startup(function(use)
 	-- Language plugins --
 	----------------------
 	use("kchmck/vim-coffee-script")
-	-- use({
-	-- 	"tpope/vim-rails",
-	-- 	event = { "BufReadPre", "BufNewFile" },
-	-- 	config = function()
-	-- 		-- disable autocmd set filetype=eruby.yaml
-	-- 		vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-	-- 			pattern = { "*.yml" },
-	-- 			callback = function()
-	-- 				vim.bo.filetype = "yaml"
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- })
-
+	use("tpope/vim-rails")
 	use("slim-template/vim-slim")
 
 	use({
