@@ -51,7 +51,7 @@ vim.diagnostic.config({
 -- Elixir
 lsp.elixirls.setup({
 	-- Unix
-	cmd = { "/home/joe/.elixir-ls/release/language_server.sh" },
+	cmd = { "/home/joe/.elixir-ls/language_server.sh" },
 	flags = flags,
 	capabilities = capabilities,
 	on_attach = on_attach,
