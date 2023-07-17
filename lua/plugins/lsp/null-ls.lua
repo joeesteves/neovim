@@ -25,14 +25,6 @@ nls.setup({
 		fmt.rubocop,
 		fmt.sqlformat,
 		fmt.mix,
-		-- fmt.prettier.with({
-		--     extra_args = {
-		--         '--tab-width=4',
-		--         '--trailing-comma=es5',
-		--         '--end-of-line=lf',
-		--         '--arrow-parens=always',
-		--     },
-		-- }),
 		fmt.rustfmt,
 		fmt.stylua,
 		fmt.gofmt,
@@ -41,6 +33,7 @@ nls.setup({
 		fmt.shfmt.with({
 			extra_args = { "-i", 4, "-ci", "-sr" },
 		}),
+    --
 		-----------------
 		-- DIAGNOSTICS --
 		-----------------

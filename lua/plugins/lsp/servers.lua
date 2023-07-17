@@ -40,14 +40,6 @@ vim.diagnostic.config({
 	},
 })
 
--- lsp.sqlls.setup({
--- 	cmd = { "sql-language-server", "up", "--method", "stdio" },
--- 	filetypes = { "sql" },
--- 	flags = flags,
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- })
-
 -- Elixir
 lsp.elixirls.setup({
 	-- Unix
