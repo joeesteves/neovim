@@ -37,14 +37,14 @@ nls.setup({
 		fmt.stylua,
 		fmt.gofmt,
 		fmt.zigfmt,
-		fmt.eslint_d,
+		fmt.eslint,
 		fmt.shfmt.with({
 			extra_args = { "-i", 4, "-ci", "-sr" },
 		}),
 		-----------------
 		-- DIAGNOSTICS --
 		-----------------
-		dgn.eslint_d,
+		dgn.eslint,
 		-- dgn.shellcheck,
 		dgn.luacheck.with({
 			extra_args = { "--globals", "vim", "--std", "luajit" },
@@ -52,7 +52,7 @@ nls.setup({
 		------------------
 		-- CODE ACTIONS --
 		------------------
-		cda.eslint_d,
+		cda.eslint,
 		cda.shellcheck,
 	},
 	on_attach = function(client, bufnr)
