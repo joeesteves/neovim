@@ -1,6 +1,7 @@
 local function map(m, k, v)
 	vim.keymap.set(m, k, v, { silent = true })
 end
+map("n", "<leader>t", [[:r!echo $(date +\%Y-\%m-\%d)<CR>]])
 
 map("n", "<C-x>", "<CMD>bd<CR>")
 map("n", "<C-t>", "<CMD>tabnew<CR>")

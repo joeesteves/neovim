@@ -76,7 +76,9 @@ return require("packer").startup(function(use)
 			end,
 		},
 	})
+
 	-- Lua
+
 	use({
 		"folke/trouble.nvim",
 		requires = "nvim-tree/nvim-web-devicons",
@@ -126,7 +128,7 @@ return require("packer").startup(function(use)
 						"vim.g.git_branch",
 						{ "diagnostics", symbols = { error = "E", warn = "W", info = "I", hint = "H" } },
 					},
-					lualine_c = { "filename" },
+					lualine_c = { { "filename", path = 1 } },
 					lualine_x = { "encoding", "filetype" },
 					lualine_y = { "progress" },
 					lualine_z = {},
@@ -167,9 +169,11 @@ return require("packer").startup(function(use)
 	})
 
 	use("romainl/vim-qf")
+
 	-----------------------------------
 	-- Treesitter: Better Highlights --
 	-----------------------------------
+
 	use("pbrisbin/vim-syntax-shakespeare")
 	use({
 		{
@@ -186,6 +190,7 @@ return require("packer").startup(function(use)
 	----------------------
 	-- Language plugins --
 	----------------------
+
 	use("kchmck/vim-coffee-script")
 	use("tpope/vim-rails")
 	use("slim-template/vim-slim")
@@ -196,6 +201,7 @@ return require("packer").startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+
 	----------------------
 	-- Git plugins --
 	----------------------
@@ -207,7 +213,8 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("ponyesteves/vim-github-link")
+	use("joeesteves/vim-github-link")
+
 	-----------------------------------
 	-- LSP, Completions and Snippets --
 	-----------------------------------
@@ -261,4 +268,9 @@ return require("packer").startup(function(use)
 		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
 		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 	})
+
+	-----------------------------------
+	-- Profiler --
+	-----------------------------------
+	use("dstein64/vim-startuptime")
 end)

@@ -14,7 +14,7 @@ o.timeoutlen = 500
 o.updatetime = 200
 
 -- Number of screen lines to keep above and below the cursor
-o.scrolloff = 8
+o.scrolloff = 2
 
 -- Better editor UI
 o.number = true
@@ -31,7 +31,7 @@ o.autoindent = true
 o.wrap = true
 o.textwidth = 300
 o.tabstop = 2
-o.shiftwidth = 0
+o.shiftwidth = 2
 o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.list = true
 o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,multispace:  ┊"
@@ -80,10 +80,9 @@ vim.opt.diffopt:append("linematch:60")
 -- o.lazyredraw = true
 
 -- Better folds (don't fold by default)
-o.foldmethod = "indent"
 o.foldlevelstart = 99
-o.foldnestmax = 3
-o.foldminlines = 1
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Map <leader> to space
 -- FIX: not working leaders is still \

@@ -15,13 +15,14 @@ nls.setup({
 			filetypes = { "text", "zsh", "toml", "make", "conf", "tmux" },
 		}),
 		-- NOTE:
-		-- 1. both needs to be enabled to so prettier can apply eslint fixes
+		-- 1. both needs to be enabled to so prettier can apply eslint_d fixes
 		-- 2. prettierd should come first to prevent occassional race condition
 		fmt.deno_fmt.with({
 			filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
 		}),
-		fmt.prettierd,
-		-- fmt.rubyfmt,
+		fmt.prettier.with({
+			extra_filetypes = { "json" },
+		}),
 		fmt.rubocop,
 		fmt.sqlformat,
 		fmt.mix,
@@ -29,15 +30,15 @@ nls.setup({
 		fmt.stylua,
 		fmt.gofmt,
 		fmt.zigfmt,
-		fmt.eslint,
+		fmt.eslint_d,
 		fmt.shfmt.with({
 			extra_args = { "-i", 4, "-ci", "-sr" },
 		}),
-    --
+		--
 		-----------------
 		-- DIAGNOSTICS --
 		-----------------
-		dgn.eslint,
+		dgn.eslint_d,
 		-- dgn.shellcheck,
 		dgn.luacheck.with({
 			extra_args = { "--globals", "vim", "--std", "luajit" },
@@ -45,7 +46,7 @@ nls.setup({
 		------------------
 		-- CODE ACTIONS --
 		------------------
-		cda.eslint,
+		cda.eslint_d,
 		cda.shellcheck,
 	},
 	on_attach = function(client, bufnr)

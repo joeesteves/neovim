@@ -43,7 +43,7 @@ cmp.setup({
 		["<C-k>"] = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
 		["<C-j>"] = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
 		--default ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-l>"] = cmp.mapping(function(_fallback)
@@ -55,7 +55,7 @@ cmp.setup({
 		end),
 	}),
 	sources = cmp.config.sources({
-    { name = "luasnip", max_item_count = 4 },
+		{ name = "luasnip", max_item_count = 4 },
 		{ name = "nvim_lsp", max_item_count = 10 },
 		{ name = "path", max_item_count = 10 },
 		{
