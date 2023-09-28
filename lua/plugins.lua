@@ -5,6 +5,43 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	command = "source <afile> | PackerCompile",
 })
 
+require("lazy").setup({
+	"EdenEast/nightfox.nvim",
+  {
+  "nvim-tree/nvim-tree.lua",
+  event = "CursorHold",
+  requires = {
+    "nvim-tree/nvim-web-devicons", -- optional
+  },
+  config = function()
+    require("plugins.nvim-tree")
+  end,
+},
+
+
+  {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    },
+    event = "CursorHold",
+    config = function()
+      require("plugins.telescope_config")
+      require("telescope").load_extension("live_grep_args")
+    end,
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    after = "telescope.nvim",
+    run = "make",
+    config = function()
+      require("telescope").load_extension("fzf")
+    end,
+  }
+})
+
+vim.cmd([[colorscheme nightfox]])
+
 return require("packer").startup(function(use)
 	---------------------
 	-- Package Manager --
@@ -19,8 +56,8 @@ return require("packer").startup(function(use)
 	----------------------
 	-- Theme plugins --
 	----------------------
-	use("EdenEast/nightfox.nvim")
-	vim.cmd([[colorscheme nightfox]])
+	-- use("EdenEast/nightfox.nvim")
+	-- vim.cmd([[colorscheme nightfox]])
 
 	-------------------------
 	-- Shade --
@@ -44,39 +81,6 @@ return require("packer").startup(function(use)
 	---------------------------------
 	-- Navigation and Fuzzy Search --
 	---------------------------------
-	use({
-		"nvim-tree/nvim-tree.lua",
-		event = "CursorHold",
-		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-		config = function()
-			require("plugins.nvim-tree")
-		end,
-	})
-
-	use({
-		{
-			"nvim-telescope/telescope.nvim",
-			requires = {
-				{ "nvim-telescope/telescope-live-grep-args.nvim" },
-			},
-			event = "CursorHold",
-			config = function()
-				require("plugins.telescope_config")
-				require("telescope").load_extension("live_grep_args")
-			end,
-		},
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			after = "telescope.nvim",
-			run = "make",
-			config = function()
-				require("telescope").load_extension("fzf")
-			end,
-		},
-	})
-
 	-- Lua
 
 	use({
