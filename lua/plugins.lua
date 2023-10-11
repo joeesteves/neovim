@@ -14,6 +14,7 @@ require("lazy").setup({
 
 	{
 		"numToStr/Comment.nvim",
+    opts = {},
 		lazy = false,
 	},
 
