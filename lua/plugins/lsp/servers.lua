@@ -28,7 +28,7 @@ local function on_attach(client, buf)
 end
 
 -- Disable LSP logging
-vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+vim.lsp.set_log_level(vim.lsp.log_levels.DEBUG)
 
 -- Configuring native diagnostics
 vim.diagnostic.config({
@@ -66,17 +66,22 @@ lsp.rust_analyzer.setup({
 	},
 })
 
--- Haskell
-lsp.hls.setup({
-	flags = flags,
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
---
--- Solargraph
+-- Ruby
+
 lsp.solargraph.setup({
 	flags = flags,
 	capabilities = capabilities,
+	settings = {
+		solargraph = {
+			autoformat = false,
+			completion = true,
+			diagnostic = false,
+			folding = true,
+			references = true,
+			rename = true,
+			symbols = true,
+		},
+	},
 	on_attach = on_attach,
 })
 

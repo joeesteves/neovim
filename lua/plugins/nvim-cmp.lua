@@ -33,7 +33,7 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<Tab>"] = cmp.mapping.confirm({ select = false }),
+				["<Tab>"] = cmp.mapping.confirm({ select = true }),
 				["<C-l>"] = cmp.mapping(function(_fallback)
 					vim.api.nvim_feedkeys(
 						vim.fn["copilot#Accept"](vim.api.nvim_replace_termcodes("<Tab>", true, true, true)),

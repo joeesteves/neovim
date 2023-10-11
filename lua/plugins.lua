@@ -84,7 +84,7 @@ require("lazy").setup({
 	-- Add info to status line
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons"},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
 				sections = {
@@ -186,8 +186,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		{ import = "plugins/nvim-cmp"
-		},
+		{ import = "plugins/nvim-cmp" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-buffer" },

@@ -13,7 +13,7 @@ map("n", "<C-c>", "<CMD>/<<<<<<<\\|=======\\|>>>>>>>/ <CR>")
 map("n", "<C-A>", "<CMD>%y+<CR>")
 
 -- FORMAT
-map("n", "<leader>f", "<CMD>lua vim.lsp.buf.format()<CR>")
+map("n", "<leader>f", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 5000 })<CR>")
 --
 -- Copy path of current buffer to clipboard
 map("n", "<C-K><C-F>", '<CMD>let @+ = expand("%")<CR>')
