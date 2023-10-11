@@ -186,27 +186,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		{
-			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
-			config = function()
-				require("plugins.lsp.nvim-cmp")
-			end,
-			dependencies = {
-				{
-					"L3MON4D3/LuaSnip",
-					event = "InsertEnter",
-					config = function()
-						require("plugins.lsp.luasnip")
-					end,
-					dependencies = {
-						{
-							"rafamadriz/friendly-snippets",
-							event = "CursorHold",
-						},
-					},
-				},
-			},
+		{ import = "plugins/nvim-cmp"
 		},
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-path" },
