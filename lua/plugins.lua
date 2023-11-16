@@ -5,16 +5,28 @@ require("lazy").setup({
 	-----------------------
 	-- Utilities plugins --
 	-----------------------
+  "github/copilot.vim",
+	"mattn/emmet-vim",
+	{ import = "plugins/nvim-autopairs" },
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = function()
+			vim.keymap.set("n", "]t", function()
+				require("todo-comments").jump_next()
+			end, { desc = "Next todo comment" })
+
+			vim.keymap.set("n", "[t", function()
+				require("todo-comments").jump_prev()
+			end, { desc = "Prev todo comment" })
+		end,
 	},
 
 	"AndrewRadev/switch.vim",
 
 	{
 		"numToStr/Comment.nvim",
-    opts = {},
+		opts = {},
 		lazy = false,
 	},
 
@@ -106,21 +118,7 @@ require("lazy").setup({
 	-----------------------------------
 	-- Treesitter: Better Highlights --
 	-----------------------------------
-
-	"pbrisbin/vim-syntax-shakespeare",
-	{
-		{
-			"nvim-treesitter/nvim-treesitter",
-			event = { "BufReadPre", "BufNewFile" },
-			-- event = "CursorHold",
-			build = ":TSUpdate",
-			config = function()
-				require("plugins.treesitter")
-			end,
-		},
-		"nvim-treesitter/nvim-treesitter-refactor",
-	},
-
+	{ import = "plugins/treesitter" },
 	----------------------
 	-- Language plugins --
 	----------------------
@@ -139,20 +137,20 @@ require("lazy").setup({
 	-- Shade --
 	-- dim unactive buffers
 	-------------------------
-	{
-		"jghauser/shade.nvim",
-		config = function()
-			require("shade").setup({
-				overlay_opacity = 50,
-				opacity_step = 1,
-				keys = {
-					brightness_up = "<C-Up>",
-					brightness_down = "<C-Down>",
-					toggle = "<Leader>s",
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"jghauser/shade.nvim",
+	-- 	opts =
+	-- 		{
+	-- 			overlay_opacity = 50,
+	-- 			opacity_step = 1,
+	-- 			keys = {
+	-- 				brightness_up = "<C-Up>",
+	-- 				brightness_down = "<C-Down>",
+	-- 				toggle = "<Leader>s",
+	-- 			},
+	-- 		}
+	-- 	,
+	-- },
 	----------------------
 	-- Git plugins --
 	----------------------
@@ -168,7 +166,9 @@ require("lazy").setup({
 	-----------------------------------
 	-- LSP, Completions and Snippets --
 	-----------------------------------
-
+	{
+		import = "plugins/lspsaga",
+	},
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },

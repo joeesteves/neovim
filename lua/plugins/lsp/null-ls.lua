@@ -38,7 +38,7 @@ nls.setup({
 		-----------------
 		-- DIAGNOSTICS --
 		-----------------
-		dgn.rubocop,
+		-- dgn.rubocop,
     dgn.eslint_d,
 		-- dgn.shellcheck,
 		dgn.luacheck.with({

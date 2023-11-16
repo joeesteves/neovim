@@ -1,6 +1,12 @@
 local lsp = require("lspconfig")
 local U = require("plugins.lsp.utils")
 
+local signs = { Error = "🔴", Warn = "🟡", Hint = "💡", Info = "🔵" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 ---Common perf related flags for all the LSP servers
 local flags = {
 	allow_incremental_sync = true,
@@ -39,6 +45,9 @@ vim.diagnostic.config({
 		source = "always",
 	},
 })
+
+-- Svelte
+lsp.svelte.setup({})
 
 -- Elixir
 lsp.elixirls.setup({
