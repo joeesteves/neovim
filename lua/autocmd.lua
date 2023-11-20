@@ -23,17 +23,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	command = [[map <C-k> :cp<CR>]],
 })
 
--- Mix Format
---
+-- -- Mix Format
+-- --
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "elixir" },
 	command = [[map <leader>f :!mix format %<CR><ESC>]],
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.ex", "*.exs" },
-	command = [[!mix format %]],
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	pattern = { "*.ex", "*.exs" },
+-- 	command = [[!mix format %]],
+-- })
 
 vim.api.nvim_create_autocmd("BufRead", {
 	callback = function()

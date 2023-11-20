@@ -25,7 +25,7 @@ nls.setup({
 		}),
 		fmt.rubocop,
 		fmt.sqlformat,
-		fmt.mix,
+		-- fmt.mix,
 		fmt.rustfmt,
 		fmt.stylua,
 		fmt.gofmt,
