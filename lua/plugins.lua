@@ -1,87 +1,78 @@
 -- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = vim.api.nvim_create_augroup("PACKER", { clear = true }),
-	pattern = "plugins.lua",
-	command = "source <afile> | PackerCompile",
-})
+require("lazy").setup({
+	"EdenEast/nightfox.nvim",
 
-return require("packer").startup(function(use)
-	---------------------
-	-- Package Manager --
-	---------------------
-	use("wbthomason/packer.nvim")
+	-----------------------
+	-- Utilities plugins --
+	-----------------------
+  "github/copilot.vim",
+	"mattn/emmet-vim",
+	{ import = "plugins/nvim-autopairs" },
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = function()
+			vim.keymap.set("n", "]t", function()
+				require("todo-comments").jump_next()
+			end, { desc = "Next todo comment" })
 
-	----------------------
-	-- Required plugins --
-	----------------------
-	use("nvim-lua/plenary.nvim")
-
-	----------------------
-	-- Theme plugins --
-	----------------------
-	use("EdenEast/nightfox.nvim")
-	vim.cmd([[colorscheme nightfox]])
-
-	-------------------------
-	-- Shade --
-	-- dim unactive buffers
-	-------------------------
-	use({
-		"jghauser/shade.nvim",
-		config = function()
-			require("shade").setup({
-				overlay_opacity = 50,
-				opacity_step = 1,
-				keys = {
-					brightness_up = "<C-Up>",
-					brightness_down = "<C-Down>",
-					toggle = "<Leader>s",
-				},
-			})
+			vim.keymap.set("n", "[t", function()
+				require("todo-comments").jump_prev()
+			end, { desc = "Prev todo comment" })
 		end,
-	})
+	},
+
+	"AndrewRadev/switch.vim",
+
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+		lazy = false,
+	},
+
+	{
+		"tpope/vim-surround",
+		event = "BufRead",
+		dependencies = {
+			{
+				"tpope/vim-repeat",
+			},
+		},
+	},
+
+	"romainl/vim-qf",
 
 	---------------------------------
 	-- Navigation and Fuzzy Search --
 	---------------------------------
-	use({
+	{
 		"nvim-tree/nvim-tree.lua",
 		event = "CursorHold",
-		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
 			require("plugins.nvim-tree")
 		end,
-	})
-
-	use({
-		{
-			"nvim-telescope/telescope.nvim",
-			requires = {
-				{ "nvim-telescope/telescope-live-grep-args.nvim" },
-			},
-			event = "CursorHold",
-			config = function()
-				require("plugins.telescope_config")
-				require("telescope").load_extension("live_grep_args")
-			end,
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			{ "nvim-telescope/telescope-live-grep-args.nvim" },
 		},
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			after = "telescope.nvim",
-			run = "make",
-			config = function()
-				require("telescope").load_extension("fzf")
-			end,
-		},
-	})
-
-	-- Lua
-
-	use({
+		event = "CursorHold",
+		config = function()
+			require("plugins.telescope_config")
+			require("telescope").load_extension("live_grep_args")
+		end,
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+	},
+	{
 		"folke/trouble.nvim",
-		requires = "nvim-tree/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("trouble").setup({
 				-- your configuration comes here
@@ -89,11 +80,10 @@ return require("packer").startup(function(use)
 				-- refer to the configuration section below
 			})
 		end,
-	})
-
-	use({
+	},
+	{
 		"alvarosevilla95/luatab.nvim",
-		requires = "nvim-tree/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("luatab").setup({
 				-- remove anoying buffer numbers (2) file_name.ex
@@ -102,24 +92,12 @@ return require("packer").startup(function(use)
 				end,
 			})
 		end,
-	})
+	},
 
-	local function branch_name()
-		local branch = vim.fn.system("git branch --show-current | cut -c1-7 | tr -d '\n' ")
-
-		if branch ~= "" then
-			return branch
-		else
-			return ""
-		end
-	end
-
-	vim.g.git_branch = branch_name()
-	--
 	-- Add info to status line
-	use({
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
 				sections = {
@@ -135,142 +113,97 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
-
-	-----------------------
-	-- Utilities plugins --
-	-----------------------
-	use({
-		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	})
-
-	use("AndrewRadev/switch.vim")
-
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
-
-	use({
-		"tpope/vim-surround",
-		event = "BufRead",
-		requires = {
-			{
-				"tpope/vim-repeat",
-				event = "BufRead",
-			},
-		},
-	})
-
-	use("romainl/vim-qf")
+	},
 
 	-----------------------------------
 	-- Treesitter: Better Highlights --
 	-----------------------------------
-
-	use("pbrisbin/vim-syntax-shakespeare")
-	use({
-		{
-			"nvim-treesitter/nvim-treesitter",
-			event = "CursorHold",
-			run = ":TSUpdate",
-			config = function()
-				require("plugins.treesitter")
-			end,
-		},
-		{ "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" },
-	})
-
+	{ import = "plugins/treesitter" },
 	----------------------
 	-- Language plugins --
 	----------------------
 
-	use("kchmck/vim-coffee-script")
-	use("tpope/vim-rails")
-	use("slim-template/vim-slim")
-
-	use({
+	"kchmck/vim-coffee-script",
+	"tpope/vim-rails",
+	"slim-template/vim-slim",
+	{
 		"iamcco/markdown-preview.nvim",
-		run = function()
+		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	})
+	},
 
+	-------------------------
+	-- Shade --
+	-- dim unactive buffers
+	-------------------------
+	-- {
+	-- 	"jghauser/shade.nvim",
+	-- 	opts =
+	-- 		{
+	-- 			overlay_opacity = 50,
+	-- 			opacity_step = 1,
+	-- 			keys = {
+	-- 				brightness_up = "<C-Up>",
+	-- 				brightness_down = "<C-Down>",
+	-- 				toggle = "<Leader>s",
+	-- 			},
+	-- 		}
+	-- 	,
+	-- },
 	----------------------
 	-- Git plugins --
 	----------------------
-	--use tpope/vim-fugitive
-	use({
+	"tpope/vim-fugitive",
+	{
 		"tpope/vim-fugitive",
 		config = function()
 			vim.api.nvim_create_user_command("G", "Gtabedit :", {})
 		end,
-	})
+	},
 
-	use("joeesteves/vim-github-link")
-
+	"joeesteves/vim-github-link",
 	-----------------------------------
 	-- LSP, Completions and Snippets --
 	-----------------------------------
-
-	use({
+	{
+		import = "plugins/lspsaga",
+	},
+	{
 		"neovim/nvim-lspconfig",
-		event = "BufRead",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		config = function()
 			require("plugins.lsp.servers")
 		end,
-		requires = {
-			{
-				-- WARN: Unfortunately we won't be able to lazy load this
-				"hrsh7th/cmp-nvim-lsp",
-			},
-		},
-	})
-
-	use({
+	},
+	{
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "BufRead",
 		config = function()
 			require("plugins.lsp.null-ls")
 		end,
-	})
+	},
+	{
+		{ import = "plugins/nvim-cmp" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-buffer" },
+	},
+})
 
-	use({
-		{
-			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
-			config = function()
-				require("plugins.lsp.nvim-cmp")
-			end,
-			requires = {
-				{
-					"L3MON4D3/LuaSnip",
-					event = "InsertEnter",
-					config = function()
-						require("plugins.lsp.luasnip")
-					end,
-					requires = {
-						{
-							"rafamadriz/friendly-snippets",
-							event = "CursorHold",
-						},
-					},
-				},
-			},
-		},
-		{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-	})
+vim.cmd([[colorscheme nightfox]])
 
-	-----------------------------------
-	-- Profiler --
-	-----------------------------------
-	use("dstein64/vim-startuptime")
-end)
+local function branch_name()
+	local branch = vim.fn.system("git branch --show-current | cut -c1-7 | tr -d '\n' ")
+
+	if branch ~= "" then
+		return branch
+	else
+		return ""
+	end
+end
+
+vim.g.git_branch = branch_name()

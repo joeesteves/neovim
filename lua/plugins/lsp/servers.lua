@@ -1,6 +1,12 @@
 local lsp = require("lspconfig")
 local U = require("plugins.lsp.utils")
 
+local signs = { Error = "🔴", Warn = "🟡", Hint = "💡", Info = "🔵" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 ---Common perf related flags for all the LSP servers
 local flags = {
 	allow_incremental_sync = true,
@@ -28,7 +34,7 @@ local function on_attach(client, buf)
 end
 
 -- Disable LSP logging
-vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+vim.lsp.set_log_level(vim.lsp.log_levels.DEBUG)
 
 -- Configuring native diagnostics
 vim.diagnostic.config({
@@ -39,6 +45,9 @@ vim.diagnostic.config({
 		source = "always",
 	},
 })
+
+-- Svelte
+lsp.svelte.setup({})
 
 -- Elixir
 lsp.elixirls.setup({
@@ -66,17 +75,22 @@ lsp.rust_analyzer.setup({
 	},
 })
 
--- Haskell
-lsp.hls.setup({
-	flags = flags,
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
---
--- Solargraph
+-- Ruby
+
 lsp.solargraph.setup({
 	flags = flags,
 	capabilities = capabilities,
+	settings = {
+		solargraph = {
+			autoformat = false,
+			completion = true,
+			diagnostic = false,
+			folding = true,
+			references = true,
+			rename = true,
+			symbols = true,
+		},
+	},
 	on_attach = on_attach,
 })
 

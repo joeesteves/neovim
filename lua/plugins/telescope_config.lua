@@ -20,6 +20,8 @@ require("telescope").setup({
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<C-h>"] = lactions.toggle_preview,
 				["<C-t>"] = actions.select_tab,
+              ["<C-Down>"] = actions.cycle_history_next,
+              ["<C-Up>"] = actions.cycle_history_prev,
 			},
 		},
 	},
