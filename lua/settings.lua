@@ -81,7 +81,7 @@ vim.opt.diffopt:append("linematch:60")
 
 -- Better folds (don't fold by default)
 o.foldlevelstart = 99
-o.foldmethod = "expr"
+o.foldmethod = "indent"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Map <leader> to space

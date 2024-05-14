@@ -33,6 +33,7 @@ return {
 					"json",
 					"bash",
 					"ruby",
+					"svelte",
 				},
 				highlight = {
 					enable = true,

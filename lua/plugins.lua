@@ -5,7 +5,7 @@ require("lazy").setup({
 	-----------------------
 	-- Utilities plugins --
 	-----------------------
-  "github/copilot.vim",
+	"github/copilot.vim",
 	"mattn/emmet-vim",
 	{ import = "plugins/nvim-autopairs" },
 	{
