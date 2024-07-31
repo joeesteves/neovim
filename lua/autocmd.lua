@@ -1,3 +1,11 @@
+-- Set filetypes sh for all envs
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = ".env.*",
+	callback = function()
+		vim.bo.filetype = "sh"
+	end,
+	-- command = "set filetype=sh",
+})
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	pattern = { "*" },

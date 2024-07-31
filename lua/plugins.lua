@@ -1,4 +1,5 @@
 -- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
+
 require("lazy").setup({
 	"EdenEast/nightfox.nvim",
 
@@ -23,7 +24,13 @@ require("lazy").setup({
 	},
 
 	"AndrewRadev/switch.vim",
-
+	{
+		"TobinPalmer/pastify.nvim",
+		cmd = { "Pastify", "PastifyAfter" },
+		config = function()
+			require("pastify").setup({})
+		end,
+	},
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
@@ -45,6 +52,25 @@ require("lazy").setup({
 	---------------------------------
 	-- Navigation and Fuzzy Search --
 	---------------------------------
+	{
+		"nvim-tree/nvim-web-devicons",
+		config = function()
+			local devicons = require("nvim-web-devicons")
+
+			-- Get the icon settings for .env
+			local icon, color, cterm_color = devicons.get_icon_colors(".env")
+
+			-- Set the same icon for .env.prod
+			devicons.set_icon({
+				[".env.production"] = {
+					icon = icon,
+					color = color,
+					cterm_color = cterm_color,
+					name = "EnvProd",
+				},
+			})
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		event = "CursorHold",

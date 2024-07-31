@@ -46,6 +46,13 @@ vim.diagnostic.config({
 	},
 })
 
+--CSS
+lsp.cssls.setup({
+	flags = flags,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- Svelte
 lsp.svelte.setup({})
 
